@@ -1,0 +1,484 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The Legrand Orange Book
+% LaTeX Template
+% Version 2.1.1 (14/2/16)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Mathias Legrand (legrand.mathias@gmail.com) with modifications by:
+% Vel (vel@latextemplates.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+% Compiling this template:
+% This template uses biber for its bibliography and makeindex for its index.
+% When you first open the template, compile it from the command line with the 
+% commands below to make sure your LaTeX distribution is configured correctly:
+%
+% 1) pdflatex main
+% 2) makeindex main.idx -s StyleInd.ist
+% 3) biber main
+% 4) pdflatex main x 2
+%
+% After this, when you wish to update the bibliography/index use the appropriate
+% command above and make sure to compile with pdflatex several times 
+% afterwards to propagate your changes to the document.
+%
+% This template also uses a number of packages which may need to be
+% updated to the newest versions for the template to compile. It is strongly
+% recommended you update your LaTeX distribution if you have any
+% compilation errors.
+%
+% Important note:
+% Chapter heading images should have a 2:1 width:height ratio,
+% e.g. 920px width and 460px height.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[11pt,fleqn]{book} % Default font size and left-justified equations
+\usepackage{ctex}
+%----------------------------------------------------------------------------------------
+
+\input{structure} % Insert the commands.tex file which contains the majority of the structure behind the template
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\begingroup
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture,overlay]
+\coordinate [below=12cm] (midpoint) at (current page.north);
+\node at (current page.north west)
+{\begin{tikzpicture}[remember picture,overlay]
+\node[anchor=north west,inner sep=0pt] at (0,0) {\includegraphics[width=\paperwidth]{background}}; % Background image
+\draw[anchor=north] (midpoint) node [fill=ocre!30!white,fill opacity=0.6,text opacity=1,inner sep=1cm]{\Huge\centering\bfseries\sffamily\parbox[c][][t]{\paperwidth}{\centering 天文学中的概率统计\\[15pt] % Book title
+{\Large Probability statistics in Astronomy}\\[20pt] % Subtitle
+{\huge 朱信成}}}; % Author name
+\end{tikzpicture}};
+\end{tikzpicture}
+\vfill
+\endgroup
+
+%----------------------------------------------------------------------------------------
+%	COPYRIGHT PAGE
+%----------------------------------------------------------------------------------------
+
+\newpage
+~\vfill
+\thispagestyle{empty}
+
+\noindent Copyright \copyright\ 2013 John Smith\\ % Copyright notice
+
+\noindent \textsc{Published by Publisher}\\ % Publisher
+
+\noindent \textsc{book-website.com}\\ % URL
+
+\noindent Licensed under the Creative Commons Attribution-NonCommercial 3.0 Unported License (the ``License''). You may not use this file except in compliance with the License. You may obtain a copy of the License at \url{http://creativecommons.org/licenses/by-nc/3.0}. Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \textsc{``as is'' basis, without warranties or conditions of any kind}, either express or implied. See the License for the specific language governing permissions and limitations under the License.\\ % License information
+
+\noindent \textit{First printing, March 2013} % Printing/edition date
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+%\usechapterimagefalse % If you don't want to include a chapter image, use this to toggle images off - it can be enabled later with \usechapterimagetrue
+
+\chapterimage{chapter_head_1.pdf} % Table of contents heading image
+
+\pagestyle{empty} % No headers
+
+\tableofcontents % Print the table of contents itself
+
+\cleardoublepage % Forces the first chapter to start on an odd page so it's on the right
+
+\pagestyle{fancy} % Print headers again
+
+%----------------------------------------------------------------------------------------
+%	PART
+%----------------------------------------------------------------------------------------
+
+\part{Part One}
+
+%----------------------------------------------------------------------------------------
+%	CHAPTER 1
+%----------------------------------------------------------------------------------------
+
+\chapterimage{chapter_head_2.pdf} % Chapter heading image
+
+\chapter{概率论基础}
+
+\section{观测科学的不确定性}\index{p1c1}
+
+拟合参数的不确定性来源：测量过程的随机误差、系统误差和模型引入的模型误差。不确定性并不总是一成不变的:
+\begin{itemize}
+    \item 随着知识的积累而减少
+    \item 微观不确定但宏观确定
+\end{itemize}
+
+%------------------------------------------------
+\section{随机事件与样本空间}\index{p1c2}
+对随机现象的观测称为随机试验，具有以下特征：
+\begin{itemize}
+    \item[\romannumeral1]在相同的条件下，试验可以重复地进行。
+    \item[\romannumeral2]每次试验的结果不止一个，但事先知道有哪些结果$ E_1 $ ,$ E_2 $ ,$ E_3 $……
+    \item[\romannumeral3]在每次试验前，一般不能确定哪个事件会发生。特例：必然事件$ U $，不可能事件$ \varnothing $
+\end{itemize}
+\begin{definition}[样本空间]
+    不能进一步分割的随机事件是基本事件，随机事件的全体基本事件所组成的集合称为试验的样本空间$ \Omega $  
+\end{definition}
+随机现象的来源：1.随机误差 2.物理量的内禀随机性，具有某种统计分布，所测到的只是统计平均值
+
+\section{事件之间的相互关系及运算}
+随机事件的关系包括：
+\begin{itemize}
+    \item 包含：$ A $ 发生必然$ B $ 发生，则说$ A $ 包含于$ B $ ，记$ A\subset B $ 
+    \item 相等：若$ A\subset B $ 且$ B\subset A $ 则说$ A=B $ 
+    \item 互斥：若$ A $ 与$ B $ 不可能同时发生，即$ A\cap B=\varnothing $ 则$ A $ 与$ B $ 互斥
+    \item 互逆：若在任何一次试验中，$ A $ 与$ B $ 有且只有一个事件发生，即$ A\cup B=\Omega,~A\cap B=\varnothing $ 则称$ A $ 与$ B $ 互逆，记为$ A=\bar{B} $ ，互逆必互斥，反之不然
+\end{itemize}
+
+随机事件的运算包括：
+\begin{itemize}
+    \item 和：事件$ A_1 $ ,$ A_2 $ ,$ A_3 $ ……中至少有一个事件发生的事件称为事件的和，记为$ \cup_{i=1}^{n}A_i   $  
+    \item 积：事件$ A_1 $ ,$ A_2 $ ,$ A_3 $ ……同时发生，称为事件的积，记为$ \cap_{i=1}^{n}A_i   $
+    \item 差：事件$ A $ 发生而事件$ B $ 不发生，称为$ A $ 与$ B $ 的差，记作$ A-B $ 
+\end{itemize}
+事件的运算规则满足一般集合的运算规则：
+\begin{itemize}
+    \item 吸收律：$ A\subset B\Rightarrow A\cup B=B,AB=A $ 
+    \item 对偶律：$ \overline{\cup A_k}=\cap \bar{A_k};\overline{\cap A_k}=\cup \bar{A_k} $ 
+\end{itemize}
+
+\section{概率的一般定义与性质}
+为了定量描述随机试验中，随机事件发生的可能性大小，引入概率$ P(A) $ 
+
+\begin{theorem}[概率三公理]
+\begin{align}
+& 0\leqslant P(A)\leqslant 1\\ 
+& P(\Omega)=1\\
+& if~A_i \cap A_j=\varnothing,~P(\cup A_k)=\sum P(A_k)
+\end{align}
+\end{theorem}
+
+
+概率的主要性质：
+\begin{itemize}
+    \item 不可能事件的概率为0：$ P(\varnothing)=0 $
+    \item 加法公式：$$ P(A\cup B)=P(A)+P(B)-P(A\cap B) $$ 
+    \item 单调性：在同一全集$ \Omega $ 下$ A\subset B\Rightarrow P(A)\leqslant P(B) $ 
+\end{itemize} 
+\begin{corollary}[“多退少补公式”]
+   $$ P(\cup A_k)= \sum P(A_k)-\sum\limits_{1\leqslant i<j\leqslant n}P(A_i A_j)+\sum\limits_{1\leqslant i<j<k\leqslant n}P(A_i A_j A_k)+\cdots+(-1)^{n-1}P(A_1\cdots A_n) $$
+\end{corollary}
+\begin{exercise}
+    将n个同样的盒子和n个同样的球分别标号1-n，把n个球分别投入n个盒子，每盒一个球，问：至少有一个球的编号与盒子的编号相同的概率
+\end{exercise}
+\begin{remark}
+    $ \frac{1}{e} $ 
+\end{remark}
+\section{条件概率及与之有关的三个公式}
+\begin{definition}[条件概率]
+    设$ A $ 、$ B $  为同一随机试验的两个事件，$ P(A)>0 $ 定义$$ P(B|A)=P(AB)/P(A) $$ 为事件$ A $ 发生的条件下事件$ B $ 发生的概率
+    
+\end{definition}
+
+\begin{exercise}[抓阄的公平性]
+    $ n $ 个球($ a $ 个新球，其余为旧球)，每次取一个，无放回地抽取$ k(k<n) $ 次，求每次抽到新球的概率；若第一次抽到新球，第二次取到的是新球的概率
+\end{exercise}
+
+\begin{remark}
+    令$ A $ 为第一次抽到新球，$ B $ 为第二次抽到新球，有：
+    $$ P(A)=\frac{a}{n};~~P(B)=P(A)\frac{a-1}{n-1}+(1-p(A))\frac{a}{n-1}=\frac{a}{n} $$ 
+    以此类推，每次抽到新球的概率均为$ \frac{a}{n} $ 
+
+    若第一次抽到新球，则在该情况下$ P(B|A)=\frac{a-1}{n-1} $ 
+\end{remark}
+注意，条件概率定义式中通常$ P(AB) $ 是未知的，也不需要求解，$ P(B|A) $ 可以在$ A $ 发生后的样本空间中求得
+
+\begin{corollary}[乘法公式]
+    $$ P(A_1\cdots A_n)=P(A_1)P(A_2|A_1)P(A_3|A_1A_2)\cdots P(A_n|A_1\cdots A_{n-1}) $$ 
+\end{corollary}
+
+\begin{corollary}[全概率公式]
+    如果事件 $ B_1 $ ,$ \cdots $, $ B_n $ 
+    满足互斥完备集条件，即两两互斥且事件集的并为全集，则：
+    $$ \forall A,~~P(A)=\sum\limits_{k=1}^{n} P(B_k)P(A|B_k) $$ 
+\end{corollary}
+
+\begin{corollary}[贝叶斯公式]
+    因为 $ P(AB)=P(BA) $ ，利用乘法公式可得:
+    $$ P(B|A)=\frac{P(A|B)P(B)}{P(A)} $$    
+\end{corollary}
+贝叶斯公式将条件概率中的“正”问题 $ P(A|B) $ 转化为“逆”问题 $ P(B|A) $ ：
+
+如果把 $ A $ 理解为观测数据， $ B $ 理解为某种理论模型， $ P(B) $ 是根据以往经验模型正确的概率（先验概率），那么 $ P(A|B) $ 即为在模型 $ B $ 正确的情况下取得观测数据 $ A $ 的概率（通过测量得到 $ A $ 通过模型 $ B $ （通常为分布）计算 $ P(A|B) $ ）。 $ P(A) $ 可利用多次测量观察 $ A $ 的分布得到。运用贝叶斯公式，可以得到 $ P(B|A) $ 即在随机变量 $ A $ 取某值（或分布）时模型成立的概率（后验概率），是结果对模型的修正：
+$$ P(B)\triangleq P(B|A_{previous}) $$
+即前一次测量的后验概率是后一次测量的先验概率。
+\\贝叶斯公式更完整的表述是：
+
+设 $ B_1,B_2,\cdots,B_n $为互斥完备集，则 $ \forall $ 事件 $ A $ ，当 $ P(A)>0 $ 时，有
+$$ P(B_i|A)=\frac{P(B_i)P(A|B_i)}{\sum\limits_{k=1}^{n}P(B_k)P(A|B_k) },~~i=1,2,\cdots,n. $$  
+
+\section{相互独立的事件}
+\begin{definition}[独立]
+    称 $ A $ , $ B $ 为相互独立的事件，如果 $ P(AB)=P(A)\cdot P(B) $ 
+\end{definition}
+
+\section{Citation}\index{Citation}
+
+This statement requires citation \cite{book_key}; this one is more specific \cite[122]{article_key}.
+
+%------------------------------------------------
+
+\section{Lists}\index{Lists}
+
+Lists are useful to present information in a concise and/or ordered way\footnote{Footnote example...}.
+
+\subsection{Numbered List}\index{Lists!Numbered List}
+
+\begin{enumerate}
+\item The first item
+\item The second item
+\item The third item
+\end{enumerate}
+
+\subsection{Bullet Points}\index{Lists!Bullet Points}
+
+\begin{itemize}
+\item The first item
+\item The second item
+\item The third item
+\end{itemize}
+
+\subsection{Descriptions and Definitions}\index{Lists!Descriptions and Definitions}
+
+\begin{description}
+\item[Name] Description
+\item[Word] Definition
+\item[Comment] Elaboration
+\end{description}
+
+%----------------------------------------------------------------------------------------
+%	CHAPTER 2
+%----------------------------------------------------------------------------------------
+
+\chapter{In-text Elements}
+
+\section{Theorems}\index{Theorems}
+
+This is an example of theorems.
+
+\subsection{Several equations}\index{Theorems!Several Equations}
+This is a theorem consisting of several equations.
+
+\begin{theorem}[Name of the theorem]
+In $E=\mathbb{R}^n$ all norms are equivalent. It has the properties:
+\begin{align}
+& \big| ||\mathbf{x}|| - ||\mathbf{y}|| \big|\leq || \mathbf{x}- \mathbf{y}||\\
+&  ||\sum_{i=1}^n\mathbf{x}_i||\leq \sum_{i=1}^n||\mathbf{x}_i||\quad\text{where $n$ is a finite integer}
+\end{align}
+\end{theorem}
+
+\subsection{Single Line}\index{Theorems!Single Line}
+This is a theorem consisting of just one line.
+
+\begin{theorem}
+A set $\mathcal{D}(G)$ in dense in $L^2(G)$, $|\cdot|_0$. 
+\end{theorem}
+
+%------------------------------------------------
+
+\section{Definitions}\index{Definitions}
+
+This is an example of a definition. A definition could be mathematical or it could define a concept.
+
+\begin{definition}[Definition name]
+Given a vector space $E$, a norm on $E$ is an application, denoted $||\cdot||$, $E$ in $\mathbb{R}^+=[0,+\infty[$ such that:
+\begin{align}
+& ||\mathbf{x}||=0\ \Rightarrow\ \mathbf{x}=\mathbf{0}\\
+& ||\lambda \mathbf{x}||=|\lambda|\cdot ||\mathbf{x}||\\
+& ||\mathbf{x}+\mathbf{y}||\leq ||\mathbf{x}||+||\mathbf{y}||
+\end{align}
+\end{definition}
+
+%------------------------------------------------
+
+\section{Notations}\index{Notations}
+
+\begin{notation}
+Given an open subset $G$ of $\mathbb{R}^n$, the set of functions $\varphi$ are:
+\begin{enumerate}
+\item Bounded support $G$;
+\item Infinitely differentiable;
+\end{enumerate}
+a vector space is denoted by $\mathcal{D}(G)$. 
+\end{notation}
+
+%------------------------------------------------
+
+\section{Remarks}\index{Remarks}
+
+This is an example of a remark.
+
+\begin{remark}
+The concepts presented here are now in conventional employment in mathematics. Vector spaces are taken over the field $\mathbb{K}=\mathbb{R}$, however, established properties are easily extended to $\mathbb{K}=\mathbb{C}$.
+\end{remark}
+
+%------------------------------------------------
+
+\section{Corollaries}\index{Corollaries}
+
+This is an example of a corollary.
+
+\begin{corollary}[Corollary name]
+The concepts presented here are now in conventional employment in mathematics. Vector spaces are taken over the field $\mathbb{K}=\mathbb{R}$, however, established properties are easily extended to $\mathbb{K}=\mathbb{C}$.
+\end{corollary}
+
+%------------------------------------------------
+
+\section{Propositions}\index{Propositions}
+
+This is an example of propositions.
+
+\subsection{Several equations}\index{Propositions!Several Equations}
+
+\begin{proposition}[Proposition name]
+It has the properties:
+\begin{align}
+& \big| ||\mathbf{x}|| - ||\mathbf{y}|| \big|\leq || \mathbf{x}- \mathbf{y}||\\
+&  ||\sum_{i=1}^n\mathbf{x}_i||\leq \sum_{i=1}^n||\mathbf{x}_i||\quad\text{where $n$ is a finite integer}
+\end{align}
+\end{proposition}
+
+\subsection{Single Line}\index{Propositions!Single Line}
+
+\begin{proposition} 
+Let $f,g\in L^2(G)$; if $\forall \varphi\in\mathcal{D}(G)$, $(f,\varphi)_0=(g,\varphi)_0$ then $f = g$. 
+\end{proposition}
+
+%------------------------------------------------
+
+\section{Examples}\index{Examples}
+
+This is an example of examples.
+
+\subsection{Equation and Text}\index{Examples!Equation and Text}
+
+\begin{example}
+Let $G=\{x\in\mathbb{R}^2:|x|<3\}$ and denoted by: $x^0=(1,1)$; consider the function:
+\begin{equation}
+f(x)=\left\{\begin{aligned} & \mathrm{e}^{|x|} & & \text{si $|x-x^0|\leq 1/2$}\\
+& 0 & & \text{si $|x-x^0|> 1/2$}\end{aligned}\right.
+\end{equation}
+The function $f$ has bounded support, we can take $A=\{x\in\mathbb{R}^2:|x-x^0|\leq 1/2+\epsilon\}$ for all $\epsilon\in\intoo{0}{5/2-\sqrt{2}}$.
+\end{example}
+
+\subsection{Paragraph of Text}\index{Examples!Paragraph of Text}
+
+\begin{example}[Example name]
+\lipsum[2]
+\end{example}
+
+%------------------------------------------------
+
+\section{Exercises}\index{Exercises}
+
+This is an example of an exercise.
+
+\begin{exercise}
+This is a good place to ask a question to test learning progress or further cement ideas into students' minds.
+\end{exercise}
+
+%------------------------------------------------
+
+\section{Problems}\index{Problems}
+
+\begin{problem}
+What is the average airspeed velocity of an unladen swallow?
+\end{problem}
+
+%------------------------------------------------
+
+\section{Vocabulary}\index{Vocabulary}
+
+Define a word to improve a students' vocabulary.
+
+\begin{vocabulary}[Word]
+Definition of word.
+\end{vocabulary}
+
+%----------------------------------------------------------------------------------------
+%	PART
+%----------------------------------------------------------------------------------------
+
+\part{Part Two}
+
+%----------------------------------------------------------------------------------------
+%	CHAPTER 3
+%----------------------------------------------------------------------------------------
+
+\chapterimage{chapter_head_1.pdf} % Chapter heading image
+
+\chapter{Presenting Information}
+
+\section{Table}\index{Table}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{l l l}
+\toprule
+\textbf{Treatments} & \textbf{Response 1} & \textbf{Response 2}\\
+\midrule
+Treatment 1 & 0.0003262 & 0.562 \\
+Treatment 2 & 0.0015681 & 0.910 \\
+Treatment 3 & 0.0009271 & 0.296 \\
+\bottomrule
+\end{tabular}
+\caption{Table caption}
+\end{table}
+
+%------------------------------------------------
+
+\section{Figure}\index{Figure}
+
+\begin{figure}[h]
+\centering\includegraphics[scale=0.5]{placeholder}
+\caption{Figure caption}
+\end{figure}
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+\chapter*{Bibliography}
+\addcontentsline{toc}{chapter}{\textcolor{ocre}{Bibliography}}
+\section*{Books}
+\addcontentsline{toc}{section}{Books}
+\printbibliography[heading=bibempty,type=book]
+\section*{Articles}
+\addcontentsline{toc}{section}{Articles}
+\printbibliography[heading=bibempty,type=article]
+
+%----------------------------------------------------------------------------------------
+%	INDEX
+%----------------------------------------------------------------------------------------
+
+\cleardoublepage
+\phantomsection
+\setlength{\columnsep}{0.75cm}
+\addcontentsline{toc}{chapter}{\textcolor{ocre}{Index}}
+\printindex
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
